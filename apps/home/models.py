@@ -50,4 +50,5 @@ class VideoModel(models.Model):
             x[k] = v
 
           result.append(x)
+    result.sort(key=lambda video: video['name'])
     return result
