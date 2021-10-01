@@ -1,0 +1,28 @@
+{% extends "body.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-12">
+    <h2>All Videos</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <ol class="list-group list-group-numbered">
+      {% for video in videos %}
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">
+            <a href="play/{{video.file}}" class="text-primary">
+              {{video.name}}
+            </a>
+          </div>
+          {{video.detail}}
+        </div>
+        <span class="badge bg-primary rounded-pill">{{video.size}} MB</span>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</div>
+{% endblock content %}

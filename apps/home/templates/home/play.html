@@ -1,0 +1,36 @@
+{% extends "body.html" %}
+
+{% block content %}
+<div class="row m-3">
+  <div class="col-sm-12 border p-1">
+    <h2 class="text-center">Video "{{video.file}}"</h2>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#detailVideo" aria-expanded="false" aria-controls="detailVideo">
+      Detail Video
+    </button>
+    <div class="collapse" id="detailVideo">
+      <div class="card card-body">
+        <ol class="list-group list-group-numbered">
+          <li class="list-group-item"><span class="fw-bold">Size</span> {{video.size}} MB</li>
+          <li class="list-group-item"><span class="fw-bold">Detail</span> {{video.data.detail}}</li>
+        </ol>
+      </div>
+    </div>
+    <video controls id="video">
+      <source src="/{{video.url}}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dataVideo" aria-expanded="false" aria-controls="dataVideo">
+      Data Video
+    </button>
+    <div class="collapse" id="dataVideo">
+      <div class="card card-body">
+        <ol class="list-group list-group-numbered">
+          {% for x in video.data.bookmarks %}
+          <li class="list-group-item list-group-item-{{x.2}} btn-video-player-time" time="{{x.0}}"><span class="fw-bold">{{x.0}}</span> : {{x.1}}</li>
+          {% endfor %}
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
