@@ -20,6 +20,11 @@ class IndexView(TemplateView):
 class AboutView(TemplateView):
   template_name = 'home/about.html'
   
+  def get_context_data(self, **kwargs):
+    context = {}
+    context['title_page'] = 'About'
+    return context 
+  
 class TutorialView(TemplateView):
   template_name = 'home/tutorial.html'
   
@@ -28,6 +33,6 @@ class PlayView(TemplateView):
   
   def get_context_data(self, **kwargs):
     context = {}
-    context['title_page'] = 'Video Player'
+    context['title_page'] = kwargs['file'][:-4]
     context['video'] = video.fetch(kwargs['file'])
     return context 
